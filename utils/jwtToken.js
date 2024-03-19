@@ -5,7 +5,9 @@ export const sendToken = (user, statusCode, res, message) => {
       expire: new Date(
         new Date() + process.env.COOKIE_EXPIRE 
       ),
-      httpOnly: true, // Set httpOnly to true
+      httpOnly: true, // Set httpOnly to true,
+      secure: true,
+        overwrite:true,
     };
   
     res.status(statusCode).cookie("token", token, options).json({
