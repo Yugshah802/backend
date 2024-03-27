@@ -13,17 +13,14 @@ import { errorMiddleware } from "./middlewares/error.js";
 const app = express();
 dotenv.config({ path: "./config/config.env" });
 
-app.use((req,res,next)=>{
-  const origin = req.headers.origin;
-  if (process.env.allowedOrigins.includes(origin)) {
-      res.setHeader('Access-Control-Allow-Origin', origin);
-  }
-  res.header(
-      "Access-Control-Allow-Headers",
-      "Origin,X-Requested-With,Content-Type,Accept"
-  );
-  next();
-})
+app.use(
+  cors({
+    origin: [process.env.FRONTEND_URL],
+    method: ["GET", "POST", "DELETE", "PUT"],
+    credentials: true,
+  })
+);
+
   
   app.use(cookieParser());
   app.use(express.json());
