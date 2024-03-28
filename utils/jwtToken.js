@@ -6,7 +6,7 @@ export const sendToken = (user, statusCode, res, message) => {
         Date.now() + process.env.COOKIE_EXPIRE 
       ),
       secure: true,
-      httpOnly: false,
+      httpOnly: true,
     };
     console.log(token);
   
