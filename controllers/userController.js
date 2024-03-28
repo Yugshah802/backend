@@ -46,16 +46,22 @@ export const login = catchAsyncErrors(async (req, res, next) => {
   });
 
   export const logout = catchAsyncErrors(async (req, res, next) => {
-    res
-      .status(201)
-      .cookie("token", "", {
-        httpOnly: true,
-        expires: new Date(Date.now()),
-      })
-      .json({
-        success: true,
-        message: "Logged Out Successfully.",
-      });
+    // res
+    //   .status(201)
+    //   .cookie("token", "", {
+    //     httpOnly: true,
+    //     expires: new Date(Date.now()),
+    //   })
+    //   .json({
+    //     success: true,
+    //     message: "Logged Out Successfully.",
+    //   });
+    res.clearCookie("token", { httpOnly: true });
+    res.clearCookie("token", { httpOnly: true });
+    res.status(201).json({
+      success: true,
+      message: "Logged Out Successfully.",
+    });
   });
 
   export const getUser = catchAsyncErrors((req, res, next) => {
