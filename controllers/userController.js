@@ -56,11 +56,24 @@ export const login = catchAsyncErrors(async (req, res, next) => {
     //     success: true,
     //     message: "Logged Out Successfully.",
     //   });
-    res.clearCookie("token", { httpOnly: true });
+    // res.clearCookie("token", { httpOnly: true });
 
-    res.status(201).json({
+    // res.status(201).json({
+    //   success: true,
+    //   message: "Logged Out Successfully.",
+    // });
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: true, // Ensure the cookie is only sent over HTTPS
+      sameSite: "strict", // Enforce same-site cookie policy
+      path: "/", // Specify the root path to ensure cookie clearance across all paths
+      domain: "frontend-kirj.onrender.com" // Specify your domain to ensure clearance across all subdomains
+    });
+  
+    // Send a response indicating successful logout
+    res.status(200).json({
       success: true,
-      message: "Logged Out Successfully.",
+      message: "Logged out successfully."
     });
   });
 
