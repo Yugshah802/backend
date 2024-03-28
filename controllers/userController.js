@@ -48,9 +48,9 @@ export const login = catchAsyncErrors(async (req, res, next) => {
   export const logout = catchAsyncErrors(async (req, res, next) => {
     res
       .status(201)
-      .cookie("token", "loggedout", {
-        expires: new Date(Date.now() + 10*1000),
+      .cookie("token", "", {
         httpOnly: true,
+        expires: new Date(Date.now()),
       })
       .json({
         success: true,
