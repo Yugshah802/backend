@@ -57,7 +57,7 @@ export const login = catchAsyncErrors(async (req, res, next) => {
     //     message: "Logged Out Successfully.",
     //   });
     res.clearCookie("token", { httpOnly: true });
-    res.clearCookie("token", { httpOnly: true });
+
     res.status(201).json({
       success: true,
       message: "Logged Out Successfully.",
