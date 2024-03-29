@@ -67,7 +67,7 @@ export const login = catchAsyncErrors(async (req, res, next) => {
       secure: true, // Ensure the cookie is only sent over HTTPS
       sameSite: "strict", // Enforce same-site cookie policy
       path: "/", // Specify the root path to ensure cookie clearance across all paths
-      domain: "frontend-kirj.onrender.com" // Specify your domain to ensure clearance across all subdomains
+      domain: "backend-pxy3.onrender.com" // Specify your domain to ensure clearance across all subdomains
     });
   
     // Send a response indicating successful logout
