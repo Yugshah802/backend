@@ -46,35 +46,43 @@ export const login = catchAsyncErrors(async (req, res, next) => {
   });
 
   export const logout = catchAsyncErrors(async (req, res, next) => {
-    // res
-    //   .status(201)
-    //   .cookie("token", "", {
-    //     httpOnly: true,
-    //     expires: new Date(Date.now()),
-    //   })
-    //   .json({
-    //     success: true,
-    //     message: "Logged Out Successfully.",
-    //   });
+    res
+      .status(201)
+      .cookie("token", "", {
+        httpOnly: true,
+        expires: new Date(Date.now()),
+        secure: true, // Ensure the cookie is only sent over HTTPS
+        sameSite: "none", // Enforce same-site cookie policy
+        path: "/", // Specify the root path to ensure cookie clearance across all paths
+        domain: "backend-pxy3.onrender.com" 
+    
+      })
+      .json({
+        success: true,
+        message: "Logged Out Successfully.",
+      });
     // res.clearCookie("token", { httpOnly: true });
 
     // res.status(201).json({
     //   success: true,
     //   message: "Logged Out Successfully.",
     // });
-    res.clearCookie("token", {
-      httpOnly: true,
-      secure: true, // Ensure the cookie is only sent over HTTPS
-      sameSite: "strict", // Enforce same-site cookie policy
-      path: "/", // Specify the root path to ensure cookie clearance across all paths
-      domain: "backend-pxy3.onrender.com" // Specify your domain to ensure clearance across all subdomains
-    });
-  
-    // Send a response indicating successful logout
-    res.status(200).json({
-      success: true,
-      message: "Logged out successfully."
-    });
+    // res.clearCookie("token", {
+
+    //   httpOnly: true,
+    //   secure: true, // Ensure the cookie is only sent over HTTPS
+    //   sameSite: "none", // Enforce same-site cookie policy
+    //   path: "/", // Specify the root path to ensure cookie clearance across all paths
+    //   domain: "backend-pxy3.onrender.com" // Specify your domain to ensure clearance across all subdomains
+     
+    // });
+    // console.log("token");
+    // // Send a response indicating successful logout
+    // res.status(200).json({
+    //   success: true,
+    //   message: "Logged out successfully."
+    
+    // });
   });
 
   export const getUser = catchAsyncErrors((req, res, next) => {
