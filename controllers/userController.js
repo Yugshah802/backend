@@ -54,7 +54,7 @@ export const login = catchAsyncErrors(async (req, res, next) => {
         secure: true, // Ensure the cookie is only sent over HTTPS
         sameSite: "none", // Enforce same-site cookie policy
         path: "/", // Specify the root path to ensure cookie clearance across all paths
-        domain: "backend-pxy3.onrender.com" 
+       
     
       })
       .json({
